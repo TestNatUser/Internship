@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +86,7 @@
         </tr>
         </thead>
         <tbody id="mainTable">
+
         </tbody>
     </table>
     <h5 id="count" style="float: right; margin-right: 20px"></h5>
