@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @javax.persistence.Entity
-@Table(name="player")
+@Table(name = "player")
 public class Entity {
     public Entity() {
 
@@ -18,37 +18,37 @@ public class Entity {
 
     @Id
     @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
     private Long id;
 
-    @Column(name="name",length = 12)
+    @Column(name = "name", length = 12)
     private String name;
 
-    @Column(name="title",length=30)
+    @Column(name = "title", length = 30)
     private String title;
 
-    @Column(name="race")
+    @Column(name = "race")
     @Enumerated(EnumType.STRING)
     private Race race;
 
-    @Column(name="profession")
+    @Column(name = "profession")
     @Enumerated(EnumType.STRING)
     private Profession profession;
 
-    @Column(name="birthday")
+    @Column(name = "birthday")
     private Date birthday;
 
-    @Column(name="banned")
+    @Column(name = "banned")
     private Boolean banned;
 
-    @Column(name="experience")
+    @Column(name = "experience")
     private Integer experience;
 
-    @Column(name="level")
+    @Column(name = "level")
     private Integer level;
 
-    @Column(name="untilNextLevel")
+    @Column(name = "untilNextLevel")
     private Integer untilNextLevel;
 
     public Long getId() {
