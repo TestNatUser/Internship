@@ -7,11 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PlayerService {
-    void addPlayer(Entity player);
-    void delete(long id);
+    ResponseEntity<?> addPlayer(Entity player);
+    ResponseEntity<HttpStatus> delete(long id);
     List<Entity> getAll(int page,
                         int limit,
                         PlayerOrder sortBy,
@@ -41,7 +40,7 @@ public interface PlayerService {
                         Integer maxExperience,
                         Integer minLevel,
                         Integer maxLevel);
-    long getCount();
-    Optional<Entity> getById(long id);
-    void editPlayerById(Entity player, long id);
+
+    ResponseEntity<?> getById(long id);
+    ResponseEntity<?> editPlayerById(Entity player, long id);
 }

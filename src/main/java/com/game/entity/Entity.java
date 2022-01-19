@@ -1,12 +1,13 @@
 package com.game.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-
+import org.springframework.validation.annotation.*;
 import javax.persistence.*;
 import java.util.Date;
 
 @javax.persistence.Entity
 @Table(name = "player")
+@Validated
 public class Entity {
     public Entity() {
 

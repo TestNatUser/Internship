@@ -4,12 +4,14 @@ import com.game.entity.Entity;
 import com.game.entity.Profession;
 import com.game.entity.Race;
 import com.game.service.PlayerServiceImplementation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
@@ -38,13 +40,13 @@ public class Player {
             @RequestParam(value = "minLevel", required = false) Integer minLevel,
             @RequestParam(value = "maxLevel", required = false) Integer maxLevel) {
 
-        return playerServiceImplementation.getAll(page, size, sort,name, title, race, profession,before,after,banned,minExperience,maxExperience,minLevel,maxLevel);
+        return playerServiceImplementation.getAll(page, size, sort,name, title, race, profession,after,before,banned,minExperience,maxExperience,minLevel,maxLevel);
     }
 
     @PostMapping(value = "/rest/players", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void CreatePlayer(@RequestBody Entity player) {
-        playerServiceImplementation.addPlayer(player);
+    public ResponseEntity<?> CreatePlayer(@RequestBody @Validated Entity player) {
+        return playerServiceImplementation.addPlayer(player);
     }
 
     @GetMapping(value = "/rest/players/count")
@@ -69,19 +71,19 @@ public class Player {
 
     @PostMapping(value = "/rest/players/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void ShowById(@PathVariable long id, @RequestBody Entity entity) {
-        playerServiceImplementation.editPlayerById(entity, id);
+    public ResponseEntity<?> ShowById(@PathVariable long id, @RequestBody Entity entity) {
+        return playerServiceImplementation.editPlayerById(entity, id);
     }
 
     @GetMapping(value = "/rest/players/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Entity UpdatePlayer(@PathVariable long id) {
-        return playerServiceImplementation.getById(id).get();
+    public ResponseEntity<?> UpdatePlayer(@PathVariable long id) {
+        return playerServiceImplementation.getById(id);
     }
 
     @DeleteMapping(value = "/rest/players/{id}")
     @ResponseBody
-    public void delete(@PathVariable long id) {
-        playerServiceImplementation.delete(id);
+    public ResponseEntity<HttpStatus> delete(@PathVariable long id) {
+        return playerServiceImplementation.delete(id);
     }
 }
